@@ -1,4 +1,4 @@
-//variables declarando total y prompt
+//variables declarando total y prompt para ingresar a menu de compra
 let total = 0;
 let compra = prompt('¿Desea comprar un producto para su vehiculo? (si / no)');
 //bucle
