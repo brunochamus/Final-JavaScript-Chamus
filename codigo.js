@@ -51,8 +51,3 @@ function sumaaTotal(precio){
     total = total + precio;
     alert('El total de su compra es de $'+total);
 }
-
-function listaCompra(lista){
-    listaCarro = listaCarro + lista;
-    alert ('usted tiene en el carro' +listaCarro);
-}
