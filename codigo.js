@@ -1,5 +1,12 @@
+//Ingreso de cliente
+alert('Bienvenido a SpeedCar');
+alert('Somos un comercio dedicado a la estetica vehicular, amamos los autos!')
+let cliente = '';
+cliente = prompt ('Ingresa tu nombre:')
+    alert ('Hola ' + cliente)
 //variables declarando total y prompt para ingresar a menu de compra
 let total = 0;
+let listaCarro = '';
 let compra = prompt('¿Desea comprar un producto para su vehiculo? (si / no)');
 //bucle
 while(compra == 'si'){
@@ -33,7 +40,7 @@ while(compra == 'si'){
             alert('Producto inexistente');
             break;
     }
-    compra = prompt('¿Desea comprar un producto para su vehiculo? (si / no)');
+    compra = prompt('¿Desea comprar otro producto para su vehiculo? (si / no)');
 }
 
 alert('Total de su carro es de $'+total)
@@ -43,4 +50,9 @@ alert('Total de su carro es de $'+total)
 function sumaaTotal(precio){
     total = total + precio;
     alert('El total de su compra es de $'+total);
+}
+
+function listaCompra(lista){
+    listaCarro = listaCarro + lista;
+    alert ('usted tiene en el carro' +listaCarro);
 }
