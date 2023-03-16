@@ -1,6 +1,12 @@
 //Ingreso de cliente
 alert('Bienvenido a SpeedCar');
-alert('Somos un comercio dedicado a la estetica vehicular, amamos los autos!')
+alert('Somos un comercio dedicado a la estetica vehicular, amamos los autos!');
+var edad = '';
+edad = prompt ('Ingresa tu edad');
+if (edad >= 18);
+else {
+    alert ('Debes ingresar con la supervision de un adulto, debes ser mayor de edad para conducir');
+}
 let cliente = '';
 cliente = prompt ('Ingresa tu nombre:')
     alert ('Hola ' + cliente)
