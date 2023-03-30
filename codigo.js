@@ -1,59 +1,86 @@
 //Ingreso de cliente
 alert('Bienvenido a SpeedCar');
 alert('Somos un comercio dedicado a la estetica vehicular, amamos los autos!');
+
 var edad = '';
 edad = prompt ('Ingresa tu edad');
 if (edad >= 18);
 else {
     alert ('Debes ingresar con la supervision de un adulto, debes ser mayor de edad para conducir');
 }
+
 let cliente = '';
-cliente = prompt ('Ingresa tu nombre:')
-    alert ('Hola ' + cliente)
-//variables declarando total y prompt para ingresar a menu de compra
-let total = 0;
-let listaCarro = '';
-let compra = prompt('¿Desea comprar un producto para su vehiculo? (si / no)');
-//bucle
-while(compra == 'si'){
-    let producto = prompt ('1-Shampoo $1200\n2-Revividor de caucho $2600\n3-Limpiador de llantas $4900\n4-Cera de brillo $2900\n5-Cera de interior $3100\n6-Limpa vidrios $2600');
-    switch(producto){
-        case '1':
-            alert('Agregaste Shampoo al carro!');
-            sumaaTotal(1200);
+cliente = prompt ('Ingresa tu nombre:');
+    alert ('Hola ' + cliente);
+
+const productos = [
+    {id: 1,nombre: 'Shampoo', precio: 1200},
+    {id: 2,nombre: 'Revividor de caucho', precio: 2600},
+    {id: 3,nombre: 'Limpiador de llantas', precio: 4900},
+    {id: 4,nombre: 'Cera de brillo', precio: 2900},
+    {id: 5,nombre: 'Cera de interiores', precio: 3100},
+    {id: 6,nombre: 'Limpia vidrios', precio: 2600},
+];
+let carrito = [];
+
+let seleccion = prompt('Hola desea comprar un producto? si/no');
+
+while (seleccion != 'si' && seleccion != 'no') {
+    alert ('Por favor ingrese una de las opciones')
+    seleccion = prompt ('Desea comprar un producto? (si / no)')
+}
+if (seleccion == 'si'){
+    let mostrarProductos = productos.map ((productos) => productos.id + '-' + productos.nombre + ' $ ' + productos.precio );
+    alert(mostrarProductos.join (' / '));
+}else if ( seleccion == 'no') {
+    alert('Gracias por visitarnos lo esperamos la proxima!')
+}
+
+while ( seleccion != 'no'){
+    let productos = prompt('Agrega un producto a tu carrito con su numero de item');
+    let precio = 0;
+
+    if (productos == 1 || productos == 2 || productos == 3 || productos == 4 || productos == 5 || productos == 6){
+        switch (productos){
+            case 1:
+            precio = 1200;
             break;
-        case '2':
-            alert('Agregaste Revividor de caucho al carro!');
-            sumaaTotal(2600);
+            case 2:
+            precio = 2600;
             break;
-        case '3':
-            alert('Agregaste Limpiador de llantas al carro!');
-            sumaaTotal(4900);
+            case 3:
+            precio = 4900;
             break;
-        case '4':
-            alert('Agregaste Cera de brillo al carro!');
-            sumaaTotal(2900);
+            case 4:
+            precio = 2900;
             break;
-        case '5':
-            alert('Agregaste cera de interior al carro!');
-            sumaaTotal(3100);
+            case 5:
+            precio = 3100;
             break;
-        case '6':
-            alert('Agregaste limpia vidrios al carro!');
-            sumaaTotal(2600);
+            case 6:
+            precio = 2600;
             break;
-        default:
-            alert('Producto inexistente');
+            default:
             break;
+        }
+
+    let unidades = parseInt(prompt('Cuantas unidades desea llevar?'))
+
+    carrito.push({productos ,unidades, precio});
+        console.log (carrito);
+    }else{
+        alert('No contamos con ese producto');
     }
-    compra = prompt('¿Desea comprar otro producto para su vehiculo? (si / no)');
+
+    seleccion = prompt ('Quiere comprar mas productos?');
+    while (seleccion == 'no'){
+        alert('Gracias por su compra!');
+        carrito.forEach((carritoFinal) =>{
+            console.log (`productos: ${carritoFinal.productos}, unidades: ${carritoFinal.unidades}, Total por producto: ${carritoFinal.unidades * carritoFinal.precio} `)
+        })
+        break;
+    }
 }
 
-alert('Total de su carro es de $'+total)
-
-
-//function para sumar el total que se agrega al carro
-function sumaaTotal(precio){
-    total = total + precio;
-    alert('El total de su compra es de $'+total);
-}
+const total = carrito.reduce ((acc, el) => acc + el.precio * el.unidades, 0);
+console.log (`El total a pagar por su compra es: ${total}`)

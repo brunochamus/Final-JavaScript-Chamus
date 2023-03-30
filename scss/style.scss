@@ -1,0 +1,58 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    background-color: #ff0000;
+    height: 70px;
+    display: flex;
+    img{
+        height: 40px;
+        margin: 15px;
+    }
+}
+
+#carouselExampleIndicators{
+    margin: 60px;
+}
+
+.card{
+    background-color: #cf0808d3;
+    display: flex;
+    float: left;
+    margin: 45px;
+    border: none;
+
+    h5{
+        text-align: center;
+        text-transform: uppercase;
+        color: black;
+        font-size: 30px;
+    }
+
+    p{
+        text-align: center;
+        text-transform: uppercase;
+        color: black;
+        font-size: 15px;
+    }
+
+    a{
+        width: 95%;
+        color: black;
+        background-color: rgb(138, 133, 133);
+        text-transform: uppercase;
+    }
+
+    a:hover{
+        color: black;
+        transition: all 0.5s;
+        background-color: rgb(207, 201, 201);
+    }
+}
+
+
+/* SHOPPING CART */
+

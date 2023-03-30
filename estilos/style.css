@@ -1,0 +1,21 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #ff0000;
+  height: 70px;
+  display: flex;
+}
+header img {
+  height: 40px;
+  margin: 15px;
+}
+
+#carouselExampleIndicators {
+  margin: 60px;
+}
+
+/*# sourceMappingURL=style.css.map */
