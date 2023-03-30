@@ -66,7 +66,7 @@ while ( seleccion != 'no'){
 
     let unidades = parseInt(prompt('Cuantas unidades desea llevar?'))
 
-    carrito.push({productos ,unidades, precio});
+    carrito.push({productos ,unidades, precio})
         console.log (carrito);
     }else{
         alert('No contamos con ese producto');
