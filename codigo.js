@@ -82,6 +82,12 @@ while ( seleccion != 'no'){
     }
 }
 
-const total = carrito.reduce ((acc, el) => acc + el.precio * el.unidades, 0);
-console.log (`El total a pagar por su compra es: ${total}`)
+const subTotal = carrito.reduce ((acc, el) => acc + el.precio * el.unidades, 0);
+console.log (`El subtotal a pagar por su compra es: ${subTotal}`)
 
+const funcionTotal = () => {
+    let resultado = subTotal * 1.21 ;
+    console.log (`El total con IVA incluido es de ${resultado}`)
+}
+
+funcionTotal();
