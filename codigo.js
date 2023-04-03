@@ -37,28 +37,28 @@ if (seleccion == 'si'){
 }
 
 while ( seleccion != 'no'){
-    let productos = prompt('Agrega un producto a tu carrito con su numero de item');
+    let productos = parseInt(prompt('Agrega un producto a tu carrito con su numero de item'));
     let precio = 0;
 
     if (productos == 1 || productos == 2 || productos == 3 || productos == 4 || productos == 5 || productos == 6){
         switch (productos){
             case 1:
-            precio = 1200;
+            precio += 1200;
             break;
             case 2:
-            precio = 2600;
+            precio += 2600;
             break;
             case 3:
-            precio = 4900;
+            precio += 4900;
             break;
             case 4:
-            precio = 2900;
+            precio += 2900;
             break;
             case 5:
-            precio = 3100;
+            precio += 3100;
             break;
             case 6:
-            precio = 2600;
+            precio += 2600;
             break;
             default:
             break;
@@ -84,3 +84,4 @@ while ( seleccion != 'no'){
 
 const total = carrito.reduce ((acc, el) => acc + el.precio * el.unidades, 0);
 console.log (`El total a pagar por su compra es: ${total}`)
+
