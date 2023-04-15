@@ -2,6 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: "PT Sans", sans-serif;
 }
 
 header {
@@ -13,40 +14,78 @@ header img {
   height: 40px;
   margin: 15px;
 }
+header .fa-brands {
+  color: black;
+  font-size: 35px;
+  margin-top: 20px;
+  margin-left: 600px;
+}
 
 #carouselExampleIndicators {
   margin: 60px;
 }
 
-.card {
-  background-color: rgba(207, 8, 8, 0.8274509804);
-  display: flex;
-  float: left;
-  margin: 45px;
-  border: none;
+.tienda {
+  background-color: gray;
+  padding: 30px;
 }
-.card h5 {
+.tienda h5 {
   text-align: center;
+  font-size: 60px;
   text-transform: uppercase;
-  color: black;
-  font-size: 30px;
-}
-.card p {
-  text-align: center;
-  text-transform: uppercase;
-  color: black;
-  font-size: 15px;
-}
-.card a {
-  width: 95%;
-  color: black;
-  background-color: rgb(138, 133, 133);
-  text-transform: uppercase;
-}
-.card a:hover {
-  color: black;
-  transition: all 0.5s;
-  background-color: rgb(207, 201, 201);
+  font-weight: 700;
 }
 
-/* SHOPPING CART *//*# sourceMappingURL=style.css.map */
+.row {
+  padding: 80px 0px 80px;
+  background-color: rgba(255, 0, 0, 0.7725490196);
+}
+.row .card {
+  background-color: gray;
+  margin: 10px;
+  margin-left: 60px;
+  width: 15%;
+}
+.row .card img {
+  height: 150px;
+}
+.row .card .card-body h5 {
+  font-size: 25px;
+  text-align: center;
+}
+.row .card .card-body p {
+  font-size: 20px;
+  text-align: center;
+  margin: 20px;
+}
+.row .card .card-body button {
+  background-color: rgba(255, 0, 0, 0.7725490196);
+  margin-left: 20px;
+  height: 60px;
+  width: 150px;
+}
+
+.carrito h4 {
+  text-align: center;
+  margin: 40px;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 40px;
+}
+.carrito th {
+  font-size: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: rgba(255, 0, 0, 0.7725490196);
+}
+.carrito td {
+  text-align: center;
+  font-size: 20px;
+  background-color: gray;
+}
+.carrito h3 {
+  text-transform: uppercase;
+  border-bottom: solid black 4px;
+  float: right;
+  margin-right: 60px;
+}/*# sourceMappingURL=style.css.map */

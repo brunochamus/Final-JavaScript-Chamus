@@ -1,93 +1,140 @@
-//Ingreso de cliente
-alert('Bienvenido a SpeedCar');
-alert('Somos un comercio dedicado a la estetica vehicular, amamos los autos!');
-
-var edad = '';
-edad = prompt ('Ingresa tu edad');
-if (edad >= 18);
-else {
-    alert ('Debes ingresar con la supervision de un adulto, debes ser mayor de edad para conducir');
-}
-
-let cliente = '';
-cliente = prompt ('Ingresa tu nombre:');
-    alert ('Hola ' + cliente);
-
-const productos = [
-    {id: 1,nombre: 'Shampoo', precio: 1200},
-    {id: 2,nombre: 'Revividor de caucho', precio: 2600},
-    {id: 3,nombre: 'Limpiador de llantas', precio: 4900},
-    {id: 4,nombre: 'Cera de brillo', precio: 2900},
-    {id: 5,nombre: 'Cera de interiores', precio: 3100},
-    {id: 6,nombre: 'Limpia vidrios', precio: 2600},
+//Array de objetos con los productos
+const productos = [{
+        id: 1,
+        nombre: 'Shampoo',
+        precio: 1200,
+        foto: "img/shampoo-auto.jpg"
+    },
+    {
+        id: 2,
+        nombre: 'Revividor de caucho', 
+        precio: 2600,
+        foto: "img/revividor.jpg"
+    },
+    {
+        id: 3,
+        nombre: 'Limpiador de llantas',
+        precio: 4900,
+        foto: "img/limpia-llantas.jpg"
+    },
+    {
+        id: 4,
+        nombre: 'Cera de brillo',
+        precio: 2900,
+        foto: "img/cera-brillo.jpg"
+    },
+    {
+        id: 5,
+        nombre: 'Cera de interiores',
+        precio: 3100,
+        foto: "img/cera-int.jpg"
+    },
+    {
+        id: 6,
+        nombre: 'Limpia vidrios',
+        precio: 2600,
+        foto: "img/limpia-vidrios.jpg"
+    },
+    {
+        id: 7,
+        nombre: 'Llanta de auto',
+        precio: 23000,
+        foto: "img/llanta-auto.jpg"
+    },
+    {
+        id: 8,
+        nombre: 'Llanta de todoterreno',
+        precio: 32000,
+        foto: "img/llanta-toterreno.jpg"
+    },
+    {
+        id: 9,
+        nombre: 'Suspension de auto',
+        precio: 36000,
+        foto: "img/suspension.jpg"
+    },
+    {
+        id: 10,
+        nombre: 'Suspension de todoterreno',
+        precio: 59000,
+        foto: "img/suspension-toterreno.jpg"
+    },
+    {
+        id: 11,
+        nombre: 'Escape',
+        precio: 120000,
+        foto: "img/escape.jpg"
+    },
+    {
+        id: 12,
+        nombre: 'Luces',
+        precio: 5000,
+        foto: "img/luces.jpg"
+    },
+    {
+        id: 13,
+        nombre: 'Aceite',
+        precio: 7000,
+        foto: "img/aceite.jpg"
+    },
+    {
+        id: 14,
+        nombre: 'Neumatico',
+        precio: 52000,
+        foto: "img/neumatico.jpg"
+    },
+    {
+        id: 15,
+        nombre: 'Filtro',
+        precio: 3000,
+        foto: "img/filtros.jpg"
+    },
 ];
+
+//guardado array de objetos todos dentro de una sola key en formato JSON
+const guardarProd = (clave, valor) => { localStorage.setItem(clave, valor)};
+guardarProd("ListProd", JSON.stringify(productos));
+
 let carrito = [];
 
-let seleccion = prompt('Hola desea comprar un producto? si/no');
+//Funcion con bucle para las cards creadas con innerHTML
+let contenedor = document.getElementById("produc");
 
-while (seleccion != 'si' && seleccion != 'no') {
-    alert ('Por favor ingrese una de las opciones')
-    seleccion = prompt ('Desea comprar un producto? (si / no)')
-}
-if (seleccion == 'si'){
-    let mostrarProductos = productos.map ((productos) => productos.id + '-' + productos.nombre + ' $ ' + productos.precio );
-    alert(mostrarProductos.join (' / '));
-}else if ( seleccion == 'no') {
-    alert('Gracias por visitarnos lo esperamos la proxima!')
-}
-
-while ( seleccion != 'no'){
-    let productos = parseInt(prompt('Agrega un producto a tu carrito con su numero de item'));
-    let precio = 0;
-
-    if (productos == 1 || productos == 2 || productos == 3 || productos == 4 || productos == 5 || productos == 6){
-        switch (productos){
-            case 1:
-            precio += 1200;
-            break;
-            case 2:
-            precio += 2600;
-            break;
-            case 3:
-            precio += 4900;
-            break;
-            case 4:
-            precio += 2900;
-            break;
-            case 5:
-            precio += 3100;
-            break;
-            case 6:
-            precio += 2600;
-            break;
-            default:
-            break;
-        }
-
-    let unidades = parseInt(prompt('Cuantas unidades desea llevar?'))
-
-    carrito.push({productos ,unidades, precio})
-        console.log (carrito);
-    }else{
-        alert('No contamos con ese producto');
+function cardProducto(){
+    for (const producto of productos){
+        contenedor.innerHTML += `
+            <div class="card col-sm-2">
+                <img src=${producto.foto} class="card.img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-text">${producto.nombre}</h5>
+                    <p class="card-text">$ ${producto.precio}</p>
+                    <button id='btn${producto.id}' class="btn btn-primary align-bottom">Agregar al carro</button>
+                </div>
+            </div>
+        `;
     }
 
-    seleccion = prompt ('Quiere comprar mas productos?');
-    while (seleccion == 'no'){
-        alert('Gracias por su compra!');
-        carrito.forEach((carritoFinal) =>{
-            console.log (`productos: ${carritoFinal.productos}, unidades: ${carritoFinal.unidades}, Total por producto: ${carritoFinal.unidades * carritoFinal.precio} `)
-        })
-        break;
-    }
+//Evento para agregar producto al carrito
+    productos.forEach((producto)=>{
+        document.getElementById(`btn${producto.id}`).addEventListener(`click`,()=>{
+            agregarCarrito(producto);
+        });
+    });
 }
 
-const subTotal = carrito.reduce ((acc, el) => acc + el.precio * el.unidades, 0);
-console.log (`El subtotal a pagar por su compra es: ${subTotal}`)
+cardProducto();
 
-const funcionTotal = () => {
-    let resultado = subTotal * 1.21 ;
-    console.log (`El total con IVA incluido es de ${resultado}`)
+function agregarCarrito(prodAgregar){
+    carrito.push(prodAgregar);
+
+    document.getElementById('tablabody').innerHTML += `
+        <tr>
+            <td>${prodAgregar.nombre}</td>
+            <td>$ ${prodAgregar.precio}</td>
+        </tr>
+    `;
+
+//Funcion para sumar total de carrito
+    let totalCarrito = carrito.reduce((acumulador,producto)=>acumulador+producto.precio,0);
+    document.getElementById('total').innerText='Total a pagar : $ ' +totalCarrito;
 }
-
-funcionTotal();
