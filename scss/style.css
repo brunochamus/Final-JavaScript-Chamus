@@ -5,6 +5,10 @@
   font-family: "PT Sans", sans-serif;
 }
 
+body {
+  background-color: gray;
+}
+
 header {
   background-color: #ff0000;
   height: 70px;
@@ -14,9 +18,9 @@ header img {
   height: 40px;
   margin: 15px;
 }
-header .fa-brands {
-  color: black;
-  font-size: 35px;
+header .fa-cart-arrow-down {
+  color: rgb(255, 255, 255);
+  font-size: 30px;
   margin-top: 20px;
   margin-left: 600px;
 }
@@ -26,7 +30,7 @@ header .fa-brands {
 }
 
 .tienda {
-  background-color: gray;
+  background-color: #242323;
   padding: 30px;
 }
 .tienda h5 {
@@ -34,11 +38,12 @@ header .fa-brands {
   font-size: 60px;
   text-transform: uppercase;
   font-weight: 700;
+  color: aliceblue;
 }
 
 .row {
   padding: 80px 0px 80px;
-  background-color: rgba(255, 0, 0, 0.7725490196);
+  background-color: rgba(27, 27, 27, 0.7725490196);
 }
 .row .card {
   background-color: gray;
@@ -65,18 +70,24 @@ header .fa-brands {
   width: 150px;
 }
 
+.carrito {
+  background-color: #242323;
+  padding-top: 20px;
+}
 .carrito h4 {
   text-align: center;
   margin: 40px;
   text-transform: uppercase;
   font-weight: 700;
-  font-size: 40px;
+  font-size: 50px;
+  color: aliceblue;
 }
 .carrito th {
   font-size: 20px;
   text-align: center;
   text-transform: uppercase;
-  background-color: rgba(255, 0, 0, 0.7725490196);
+  background-color: #242323;
+  color: aliceblue;
 }
 .carrito td {
   text-align: center;

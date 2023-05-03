@@ -1,4 +1,4 @@
-//Array de objetos con los productos
+
 const productos = [{
         id: 1,
         nombre: 'Shampoo',
@@ -91,14 +91,48 @@ const productos = [{
     },
 ];
 
-//guardado array de objetos todos dentro de una sola key en formato JSON
+
 const guardarProd = (clave, valor) => { localStorage.setItem(clave, valor)};
 guardarProd("ListProd", JSON.stringify(productos));
 
-let carrito = [];
 
-//Funcion con bucle para las cards creadas con innerHTML
+let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
 let contenedor = document.getElementById("produc");
+
+let finalizarBtn = document.getElementById("finalizar");
+
+miJSON();
+
+(carrito.length != 0) && carroAband();
+
+
+function carroAband(){
+    for(const producto of carrito){
+        document.getElementById("tablabody").innerHTML += `
+        <tr>
+            <td>${producto.nombre}</td>
+            <td>${producto.precio}</td>
+            <td><button class="btn btn-light" onclick="eliminar(event)">Quitar producto</button></td>
+        </tr>
+    `;
+    }
+    totalCarrito = carrito.reduce((acumulador,producto)=> acumulador + producto.precio,0);
+    let infoTotal = document.getElementById("total");
+    infoTotal.innerText="Total a pagar u$: "+totalCarrito;
+}
+
+function elimProd(ev){
+    let fila = ev.target.parentElement.parentElement;
+    let id = fila.children[0].innerText;
+    let indice = carrito.findIndex(producto => producto.id == id);
+    carrito.splice(indice,1);
+    fila.remove();
+    let preciosAcumulados = carrito.reduce((acumulador,producto)=>acumulador+producto.precio,0);
+    total.innerText="Total a pagar $: "+preciosAcumulados;
+    localStorage.setItem("carrito",JSON.stringify(carrito));
+}
+
 
 function cardProducto(){
     for (const producto of productos){
@@ -114,7 +148,7 @@ function cardProducto(){
         `;
     }
 
-//Evento para agregar producto al carrito
+
     productos.forEach((producto)=>{
         document.getElementById(`btn${producto.id}`).addEventListener(`click`,()=>{
             agregarCarrito(producto);
@@ -126,15 +160,60 @@ cardProducto();
 
 function agregarCarrito(prodAgregar){
     carrito.push(prodAgregar);
+    Toastify({
+        text: `Sumaste ${prodAgregar.nombre} al carro`,
+        duration: 4000,
+        gravity: 'center',
+        position: 'center',
+        style: {
+            background: '#ff0000'
+        }
+    }).showToast();
 
     document.getElementById('tablabody').innerHTML += `
         <tr>
             <td>${prodAgregar.nombre}</td>
             <td>$ ${prodAgregar.precio}</td>
+            <td><button class="btn btn-light" onclick="elimProd(event)">Quitar producto</button></td>
         </tr>
     `;
 
-//Funcion para sumar total de carrito
+
     let totalCarrito = carrito.reduce((acumulador,producto)=>acumulador+producto.precio,0);
     document.getElementById('total').innerText='Total a pagar : $ ' +totalCarrito;
+    localStorage.setItem("carrito",JSON.stringify(carrito));
 }
+
+finalizarBtn.onclick=()=>{
+    carrito=[];
+    document.getElementById('tablabody').innerHTML='';
+    document.getElementById('total').innerText = 'Total a pagar $:';
+    Swal.fire({
+        title: 'Usted esta finalizando su compra',
+        text: "¿Desea continuar?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '¡Si!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+        Swal.fire(
+            'Compra efectuada con exito',
+            '¡Recibira su pedido en 24hs!',
+            'success'
+            )
+        }
+    })
+
+        localStorage.removeItem("carrito");
+    }
+    
+    async function miJSON(){
+        const URLJSON = '/productos.json';
+        const respuesta = await fetch(URLJSON);
+        const data = await respuesta.json();
+        productos = data;
+
+        cardProducto();
+    }
